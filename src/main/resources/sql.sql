@@ -16,9 +16,9 @@ CREATE TABLE category (
 
 CREATE TABLE product (
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-    name VARCHAR (50) AUTO_INCREMENT PRIMARY KEY ,
-    sailer BIGINT,
-    FOREIGN KEY(sailer) REFERENCES user(id)
+    name VARCHAR (50) ,
+    seller BIGINT,
+    FOREIGN KEY(seller) REFERENCES user(id)
 );
 
 CREATE TABLE category_product (
@@ -29,7 +29,7 @@ CREATE TABLE category_product (
     FOREIGN KEY (product) REFERENCES product(id)
 );
 
-CREATE TABLE sail_post (
+CREATE TABLE sell_post (
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     writer BIGINT,
     product BIGINT,
@@ -44,8 +44,8 @@ CREATE TABLE review (
     content TEXT,
     image VARCHAR(255),
     create_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    sail_post BIGINT NOT NULL,
-    FOREIGN KEY (sail_post) REFERENCES sail_post(id)
+    sell_post BIGINT NOT NULL,
+    FOREIGN KEY (sell_post) REFERENCES sell_post(id)
 );
 
 
