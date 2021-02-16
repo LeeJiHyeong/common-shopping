@@ -2,12 +2,14 @@ package com.common.shopping.user.domain;
 
 import com.sun.istack.NotNull;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.util.Calendar;
 
+@Getter
 @NoArgsConstructor
 @Entity
 @DynamicInsert
@@ -40,6 +42,7 @@ public class User {
 
     @Column(name = "role")
     @NotNull
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @Column(name = "create_date")

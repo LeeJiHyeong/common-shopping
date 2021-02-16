@@ -4,8 +4,12 @@ import com.common.shopping.user.domain.Role;
 import com.common.shopping.user.domain.User;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
+@NoArgsConstructor
 public class UserRegisterDto {
 
     private String nickName;
@@ -32,7 +36,7 @@ public class UserRegisterDto {
                 .email(this.email)
                 .password(this.password)
                 .phone(this.phone)
-                .role(this.role)
+                .role(Role.GUEST)
                 .address(this.address)
                 .build();
     }
