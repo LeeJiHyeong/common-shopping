@@ -1,4 +1,4 @@
-package com.common.shopping;
+package com.common.shopping.user;
 
 import com.common.shopping.user.domain.Role;
 import com.common.shopping.user.domain.User;
