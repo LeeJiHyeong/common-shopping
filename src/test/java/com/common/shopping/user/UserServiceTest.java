@@ -3,7 +3,7 @@ package com.common.shopping.user;
 import com.common.shopping.user.domain.Role;
 import com.common.shopping.user.domain.User;
 import com.common.shopping.user.domain.UserRepository;
-import com.common.shopping.user.dto.UserRegisterDto;
+import com.common.shopping.user.dto.UserRegisterRequestDto;
 import com.common.shopping.user.service.UserService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -24,8 +24,8 @@ public class UserServiceTest {
     @Test
     public void 회원가입() {
         // 컨트롤러 생성 이전 초기 테스트
-        this.userRepository.save(UserRegisterDto.builder()
-                .nickName("닉네임1")
+        this.userRepository.save(UserRegisterRequestDto.builder()
+                .nickName("닉네임89")
                 .email("asd@naver.com")
                 .password("1234")
                 .address("대전광역시")
@@ -41,7 +41,7 @@ public class UserServiceTest {
     @Test
     public void 회원가입_비밀번호암호화() {
 
-        User registeredUser = this.userService.registerUser(UserRegisterDto.builder()
+        User registeredUser = this.userService.registerUser(UserRegisterRequestDto.builder()
                 .nickName("닉네임2")
                 .email("asdf@naver.com")
                 .password("12345")
