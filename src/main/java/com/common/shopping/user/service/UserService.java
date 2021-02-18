@@ -2,8 +2,7 @@ package com.common.shopping.user.service;
 
 import com.common.shopping.user.domain.User;
 import com.common.shopping.user.domain.UserRepository;
-import com.common.shopping.user.dto.UserRegisterDto;
-import lombok.RequiredArgsConstructor;
+import com.common.shopping.user.dto.UserRegisterRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,10 +13,10 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User registerUser(UserRegisterDto userRegisterDto) {
+    public User registerUser(UserRegisterRequestDto userRegisterRequestDto) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        userRegisterDto.setPassword(encoder.encode(userRegisterDto.getPassword()));
+        userRegisterRequestDto.setPassword(encoder.encode(userRegisterRequestDto.getPassword()));
 
-        return this.userRepository.save(userRegisterDto.toEntity());
+        return this.userRepository.save(userRegisterRequestDto.toEntity());
     }
 }

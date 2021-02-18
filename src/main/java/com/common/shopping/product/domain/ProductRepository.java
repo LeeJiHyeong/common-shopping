@@ -1,4 +1,6 @@
 package com.common.shopping.product.domain;
 
-public interface ProductRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProductRepository extends JpaRepository<Product, Long> {
 }
