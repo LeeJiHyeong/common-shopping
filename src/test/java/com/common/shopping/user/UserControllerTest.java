@@ -6,6 +6,7 @@ import com.common.shopping.user.domain.UserRepository;
 import com.common.shopping.user.dto.UserRegisterRequestDto;
 import com.common.shopping.user.service.UserService;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,16 +32,16 @@ public class UserControllerTest {
     @Autowired
     private UserService userService;
 
-//    @AfterEach
-//    public void tearDown() throws Exception {
-//        this.userRepository.deleteAll();
-//    }
+    @AfterEach
+    public void tearDown() throws Exception {
+        this.userRepository.deleteAll();
+    }
 
     @Test
     public void 회원가입() throws Exception {
         // given
         UserRegisterRequestDto userRegisterRequestDto = UserRegisterRequestDto.builder()
-                .nickName("닉네임7")
+                .nickName("닉네임99")
                 .email("asdf@naver.com")
                 .password("123456")
                 .address("대전광역시")
