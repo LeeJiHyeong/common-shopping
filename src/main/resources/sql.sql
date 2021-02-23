@@ -10,7 +10,7 @@ CREATE TABLE user (
 );
 
 CREATE TABLE category (
-    id BIGINT NOT NULL PRIMARY KEY,
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR (10) NOT NULL
 );
 
@@ -18,6 +18,7 @@ CREATE TABLE product (
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
     name VARCHAR (50) ,
     seller BIGINT,
+    price INTEGER,
     FOREIGN KEY(seller) REFERENCES user(id)
 );
 
