@@ -10,9 +10,11 @@ public class CategoryProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "category")
-    private Long category;
+    @ManyToOne
+    @JoinColumn(name = "category")
+    private Category category;
 
-    @Column(name = "product")
-    private Long product;
+    @ManyToOne
+    @JoinColumn(name = "product")
+    private Product product;
 }
