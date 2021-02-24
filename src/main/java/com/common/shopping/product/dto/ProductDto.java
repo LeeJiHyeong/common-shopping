@@ -1,5 +1,6 @@
 package com.common.shopping.product.dto;
 
+import com.common.shopping.product.domain.Category;
 import com.common.shopping.product.domain.Product;
 import com.common.shopping.user.domain.User;
 import lombok.Builder;
@@ -16,12 +17,14 @@ public class ProductDto {
     private String name;
     private User seller;
     private int price;
+    private Category category;
 
     @Builder
-    public ProductDto(String name, User seller, int price) {
+    public ProductDto(String name, User seller, int price, Category category) {
         this.name = name;
         this.seller = seller;
         this.price = price;
+        this.category = category;
     }
 
     public Product toEntity() {
@@ -29,6 +32,7 @@ public class ProductDto {
                 .name(this.name)
                 .seller(this.seller)
                 .price(this.price)
+                .category(this.category)
                 .build();
     }
 }

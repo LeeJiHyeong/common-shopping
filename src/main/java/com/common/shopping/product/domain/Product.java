@@ -32,16 +32,22 @@ public class Product {
     @Column(name = "price")
     private int price;
 
+    @OneToOne
+    @JoinColumn(name = "category")
+    private Category category;
+
     @Builder
-    public Product(String name, User seller, int price) {
+    public Product(String name, User seller, int price, Category category) {
         this.name = name;
         this.seller = seller;
         this.price = price;
+        this.category = category;
     }
 
-    public void update(String name, int price) {
+    public void update(String name, int price, Category category) {
         this.name = name;
         this.price = price;
+        this.category = category;
     }
 
 }
