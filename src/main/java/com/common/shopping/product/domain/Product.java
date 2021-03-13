@@ -32,7 +32,12 @@ public class Product {
     @Column(name = "price")
     private int price;
 
-    @OneToOne
+    /*
+    Category Entity와 연관관계
+    FK로 Category를 참고하고 있음
+    CascadeType.PERSIST를 통해 새로운 카테고리를 넣을 경우 카테고리 또한 save 되도록 함
+     */
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "category")
     private Category category;
 

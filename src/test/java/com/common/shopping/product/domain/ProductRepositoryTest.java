@@ -1,4 +1,4 @@
-package com.common.shopping.product;
+package com.common.shopping.product.domain;
 
 import com.common.shopping.product.domain.Category;
 import com.common.shopping.product.domain.CategoryRepository;
@@ -69,12 +69,25 @@ public class ProductRepositoryTest {
 
         //given
         User user = this.userRepository.findAll().get(0);
+
+        User user2 = UserRegisterRequestDto.builder()
+                .nickName("닉네임89")
+                .email("asd@naver.com")
+                .password("1234")
+                .address("대전광역시")
+                .phone("010-0000-0000")
+                .role(Role.GUEST)
+                .build().toEntity();
+
         Category category = this.categoryRepository.findAll().get(0);
+        Category category2 = Category.builder() // cascade 테스트
+                .name("카테고리1")
+                .build();
 
         Product product = ProductDto.builder()
                 .name("상품2")
-                .seller(user)
-                .category(category)
+                .seller(user2)
+                .category(category2)
                 .price(20000)
                 .build().toEntity();
 
@@ -84,6 +97,6 @@ public class ProductRepositoryTest {
         //then
         Assertions.assertThat(this.productRepository.findAll().get(0).getName()).isEqualTo(product.getName());
         Assertions.assertThat(this.productRepository.findAll().get(0).getPrice()).isEqualTo(product.getPrice());
-        Assertions.assertThat(this.productRepository.findAll().get(0).getCategory().getName()).isEqualTo(category.getName());
+        Assertions.assertThat(this.productRepository.findAll().get(0).getCategory().getName()).isEqualTo(category2.getName());
     }
 }

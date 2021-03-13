@@ -1,4 +1,4 @@
-package com.common.shopping.product;
+package com.common.shopping.product.domain;
 
 import com.common.shopping.product.domain.Category;
 import com.common.shopping.product.domain.CategoryRepository;
