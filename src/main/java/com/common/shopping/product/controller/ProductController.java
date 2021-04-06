@@ -1,7 +1,6 @@
 package com.common.shopping.product.controller;
 
 import com.common.shopping.product.dto.ProductDetailResponseDto;
-import com.common.shopping.product.dto.ProductDto;
 import com.common.shopping.product.dto.ProductRegisterRequestDto;
 import com.common.shopping.product.dto.ProductUpdateRequestDto;
 import com.common.shopping.product.service.ProductService;
@@ -36,5 +35,13 @@ public class ProductController {
 
         // pid 조회 후 수정해서 save
         return this.productService.updateProduct(productUpdateRequestDto, productId);
+    }
+
+    // 상품 삭제
+    @DeleteMapping(value = "/delete/{productId}")
+    public Long deleteProduct(@PathVariable("productId") Long productId) {
+
+        this.productService.deleteProduct(productId);
+        return productId;
     }
 }

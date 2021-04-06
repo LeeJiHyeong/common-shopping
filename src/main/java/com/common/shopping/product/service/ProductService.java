@@ -70,4 +70,14 @@ public class ProductService {
 
         return item.get().getId();
     }
+
+    @Transactional
+    public void deleteProduct(Long id) {
+
+        // 존재하는 엔티티인지 확인한다.
+        Product product = this.productRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("요청하신 제품을 찾을 수 없습니다."));
+
+        this.productRepository.delete(product);
+    }
 }

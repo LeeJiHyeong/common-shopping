@@ -20,10 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 
 import java.util.List;
 
@@ -168,5 +165,37 @@ public class ProductControllerTest {
         // then
         Product updatedItem = this.productRepository.findById(responseEntity.getBody()).get();
         Assertions.assertThat(updatedItem.getName()).isEqualTo(productUpdateRequestDto.getName());
+    }
+
+    @Test
+    public void 상품_삭제_테스트() {
+        // given
+
+        // 조회할 상품 테스트 데이터 삽입
+        String givenEmail = this.userRepository.findAll().get(0).getEmail();
+        String givenCategoryName = this.categoryRepository.findAll().get(0).getName();
+
+        // 상품 등록
+        ProductRegisterRequestDto productRegisterRequestDto = ProductRegisterRequestDto
+                .builder()
+                .categoryName(givenCategoryName)
+                .email(givenEmail)
+                .name("테스트 등록 상품")
+                .price(30000)
+                .build();
+
+        Long id = this.productService.saveProduct(productRegisterRequestDto);
+
+        String url = "http://localhost:" + this.port + "/product/delete/" + id;
+
+        // when
+        // delete 요청 후 반환값이 필요하므로 TestRestTemplate.exchange() 사용
+        HttpEntity<HttpHeaders> httpEntity = new HttpEntity<>(new HttpHeaders());
+        ResponseEntity<Long> responseEntity = this.testRestTemplate.exchange(url, HttpMethod.DELETE, httpEntity, Long.class);
+
+        // then
+        Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Assertions.assertThat(id).isEqualTo(responseEntity.getBody());
+
     }
 }
