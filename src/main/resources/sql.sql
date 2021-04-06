@@ -10,7 +10,7 @@ CREATE TABLE user (
 );
 
 CREATE TABLE category (
-    id BIGINT NOT NULL PRIMARY KEY,
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR (10) NOT NULL
 );
 
@@ -18,15 +18,10 @@ CREATE TABLE product (
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
     name VARCHAR (50) ,
     seller BIGINT,
-    FOREIGN KEY(seller) REFERENCES user(id)
-);
-
-CREATE TABLE category_product (
-    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-    category BIGINT,
-    product BIGINT,
-    FOREIGN KEY (category) REFERENCES category(id),
-    FOREIGN KEY (product) REFERENCES product(id)
+    price INTEGER,
+    category BIGINT ,
+    FOREIGN KEY(seller) REFERENCES user(id),
+    FOREIGN KEY(category) REFERENCES category(id)
 );
 
 CREATE TABLE sell_post (
@@ -45,7 +40,7 @@ CREATE TABLE review (
     image VARCHAR(255),
     create_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     sell_post BIGINT NOT NULL,
-    FOREIGN KEY (sell_post) REFERENCES sell_post(id)
+    FOREIGN KEY (sell_post) REFERENCES sell_post(id) ON delete cascade
 );
 
 
