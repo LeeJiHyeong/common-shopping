@@ -49,7 +49,7 @@ public class Product {
         this.category = category;
     }
 
-    public void update(String name, int price, Category category) {
+    public void update(String name, Category category, int price) {
         this.name = name;
         this.price = price;
         this.category = category;
