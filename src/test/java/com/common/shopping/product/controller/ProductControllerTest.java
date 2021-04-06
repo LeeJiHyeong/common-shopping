@@ -190,7 +190,7 @@ public class ProductControllerTest {
 
         // when
         // delete 요청 후 반환값이 필요하므로 TestRestTemplate.exchange() 사용
-        HttpEntity<HttpHeaders> httpEntity = new HttpEntity<>(new HttpHeaders());
+        HttpEntity<?> httpEntity = new HttpEntity<>(new HttpHeaders());
         ResponseEntity<Long> responseEntity = this.testRestTemplate.exchange(url, HttpMethod.DELETE, httpEntity, Long.class);
 
         // then
